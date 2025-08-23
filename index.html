@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+
+
+    <title>JN-AI</title>
+
+
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://jnnai.onrender.com/css/output.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" crossorigin onload="this.onload=null;this.rel='stylesheet'">
+
+<noscript>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="stylesheet" href="https://jnnai.onrender.com/css/output.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</noscript>
+
+
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" as="script" crossorigin>
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" as="script" crossorigin>
+<link rel="preload" href="https://jnnai.onrender.com/dist/bundle.js" as="script" crossorigin>
+
+
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" crossorigin
+  onload="hljs.highlightAll()"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js" crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" crossorigin
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$',right:'$',display:false}]})"></script>
+<script defer src="https://jnnai.onrender.com/dist/bundle.js" nonce="<%= nonce %>" crossorigin></script>
+
+</head>
+<body>
+
+    <div class="chat-container">
+
+          <div class="header">
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    <span class="logo">JN-AI</span>
+</div>
+
+        <div class="messages" id="messages"></div>
+
+
+
+        <form class="input-form" id="chat-form">
+
+
+
+
+
+
+
+
+  <div class="assistant-popup" id="assistant-popup">
+    <div class="assistant-options-container">
+      <div class="assistant-option" data-assistant="toxic">Toxic</div>
+      <div class="assistant-option current" data-assistant="helpful">Helpful</div>
+      <div class="assistant-option" data-assistant="horny">Horny</div>
+      <div class="assistant-option" data-assistant="friendly">Friendly</div>
+    </div>
+
+
+   <div class="assistant-option language-option" data-assistant="language">
+  <span>Language</span>
+  <button class="tooltip-button" id="lang-tooltip-btn">
+    <img src="/svg/q.svg" alt="Language tooltip" class="tooltip-icon" />
+  </button>
+</div>
+
+
+  </div>
+  <div id="language-popup" class="language-popup">
+
+
+    <div class="language-option" data-language="english">
+  <span>English</span>
+</div>
+
+<div class="language-option" data-language="indonesian">
+  Indo
+</div>
+
+<div class="language-option" data-language="chinese">
+  Chinese
+</div>
+
+<div class="language-option" data-language="filipino">
+  <span>Filipino</span>
+</div>
+
+<div class="language-option" data-language="Malay">
+  Malay
+</div>
+
+<div class="language-option" data-language="cebuano">
+  Bisaya
+</div>
+
+<div class="language-option" data-language="Bangla">
+  Bangla
+</div>
+  </div>  
+
+
+<button type="button" class="plus-button" id="plus-button" title="More options">
+  <i class="fas fa-plus"></i>
+</button>
+
+
+<div class="plus-popup" id="plus-popup">
+  <div class="plus-option" id="open-assistant">Assistant</div>
+
+  <label class="plus-option upload-label" for="image-upload">
+    Image
+    <input type="file" id="image-upload" accept="image/*" hidden>
+  </label>
+</div>
+
+
+<div class="thumbnail-wrapper" id="thumbnail-wrapper" style="display: none;">
+    <img id="thumbnail-image" class="thumbnail-image" src="" alt="Preview">
+    <button type="button" id="clear-thumbnail" class="clear-thumbnail" title="Remove image">×</button>
+  </div>
+
+            <textarea id="input"
+  class="leading-5 resize-none overflow-hidden"
+  placeholder="Type your message..."
+  autocomplete="off"
+  rows="1"
+></textarea>
+           <button type="submit" aria-label="Send">
+    <i class="fas fa-paper-plane"></i>
+  </button>
+        </form>
+    </div>
+
+
+<div class="sidebar" id="sidebar">
+  <button class="close-btn" id="close-btn" aria-label="Close sidebar">&times;</button>
+
+  <a href="#join-community" id="join-community" class="sidebar-link">
+    <i class="fas fa-users me-2"></i>
+    Join Community
+  </a>
+
+  <a href="#subscribe" class="sidebar-link">
+    <i class="fas fa-bell me-2"></i>
+    Subscribe
+  </a>
+<a href="#" id="logger-btn">📜 Logger</a>
+
+  <a href="#about" class="sidebar-link">
+    <i class="fas fa-info-circle me-2"></i>
+    About
+  </a>
+
+  <a href="#terms" id="terms-link" class="sidebar-link">
+    <i class="fas fa-book me-2"></i>
+    Terms of Service
+  </a>
+
+  <a href="#contact" class="sidebar-link">
+    <i class="fas fa-envelope me-2"></i>
+    Contact
+  </a>
+<div id="logger">
+  <div id="logger-header">
+    <span>JN-AI WebSocket Monitor</span>
+    <button id="logger-close">✖</button>
+  </div>
+  <pre id="log"></pre>
+</div>
+</div>
+</div>
+
+</body>
+</html>
